@@ -15,17 +15,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/", express.static("public"));
 app.use("/payment", require("./controllers/payment-controller"));
 app.use("/order", require("./controllers/order-controller"));
-app.use(cors({ 
-  origin: 'https://payos-deploy.onrender.com', // Thay bằng địa chỉ front-end của bạn
-  methods: 'GET, POST, PUT, DELETE, OPTIONS',
-  credentials: true
-}));
-app.listen(8080, () => {
-  console.log('Server is running on port 8080');
-});
+app.use(cors());
+
 // Tạo liên kết thanh toán bằng PayOS
 app.post("/create-payment-link", async (req, res) => {
-  const YOUR_DOMAIN = "https://payos-deploy.onrender.com";
+  const YOUR_DOMAIN = "http://localhost:3030";
 
   // Ví dụ payload mẫu (commented out để tham khảo)
   // const body = {
